@@ -1,0 +1,160 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+
+  <h1>Trans page.</h1>
+ 
+
+
+
+  /* Display error or success messages */
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+
+
+
+ Display form errors if any 
+
+  <div class="container mt-5">
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    /* Render the form fields with errors */ 
+
+    
+    {{ trans_form.non_field_errors }}
+    <div>
+      {{trans_form}}
+    </div>
+
+    <input type="submit" value="Make Transaction">
+  </form>
+
+  </div>
+  
+</body>
+</html>
+
+  
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Page</title>
+
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <style>
+    body {
+      background-color:darkcyan; /* Light gray background */
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #343a40; /* Dark gray color */
+    }
+    .message-list {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .message-list li {
+      list-style: none;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .message-list li.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .message-list li.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: grey;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Transaction Page</h1>
+
+  <!-- Display error or success messages -->
+  {% if messages %}
+    <ul class="message-list">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <!-- Form section -->
+  <div class="container mt-5">
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- Render non-field errors -->
+      {% if trans_form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ trans_form.non_field_errors }}
+        </div>
+      {% endif %}
+
+      <!-- Render the form -->
+      {{ trans_form.as_p }}
+
+      <div class="text-center mt-4">
+        <input type="submit" value="Make Transaction" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

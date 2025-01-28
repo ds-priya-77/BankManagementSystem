@@ -1,0 +1,165 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  <h1>HisTory Page.</h1>
+  <h2>Transaction History</h2>
+
+
+<center>
+<table border="1">
+  <thead>
+      <tr>
+          <th>Account Name</th>
+          <th>Amount</th>
+          <th>Transaction Type</th>
+          <th>Date</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for i in all_data %}
+      <tr>
+          <td>{{i.from_account.name}}</td>
+          <td style="background-color: red; color: aliceblue;">-{{i.amount}}</td>
+          <td style="background-color: red; color: aliceblue;">Debit</td>
+          <td>{{i.created_at}}</td>
+      </tr>
+      <tr>
+          <td>{{i.to_account.name}}</td>
+          <td style="background-color: green; color: aliceblue;">+{{i.amount}}</td>
+          <td style="background-color: green; color: aliceblue;">Credit</td>
+          <td>{{i.created_at}}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+</center>
+
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction History</title>
+  <style>
+    body {
+      background-color: #f4f4f9; /* Soft light background */
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #4a4a4a; /* Neutral dark color */
+      margin: 20px 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: #ffffff; /* White background for table */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    thead {
+      background-color: #007bff; /* Bootstrap primary color */
+      color: #ffffff;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .debit {
+      background-color: #dc3545; /* Bootstrap danger color */
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 5px 10px;
+    }
+
+    .credit {
+      background-color: #28a745; /* Bootstrap success color */
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 5px 10px;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Transaction History</h1>
+  <h2>View Your Recent Transactions</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Account Name</th>
+        <th>Amount</th>
+        <th>Transaction Type</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in all_data %}
+      <tr>
+        <td>{{ i.from_account.name }}</td>
+        <td class="debit">-{{ i.amount }}</td>
+        <td class="debit">Debit</td>
+        <td>{{ i.created_at }}</td>
+      </tr>
+      <tr>
+        <td>{{ i.to_account.name }}</td>
+        <td class="credit">+{{ i.amount }}</td>
+        <td class="credit">Credit</td>
+        <td>{{ i.created_at }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>
